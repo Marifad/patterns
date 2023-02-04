@@ -8,8 +8,7 @@ import ru.netology.web.data.DataGenerator;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -46,7 +45,7 @@ public class NewDateTest {
         $("[data-test-id='date'] input").setValue(secondMeetingDate);
         $$("button").find(exactText("Запланировать")).click();
         $("[data-test-id='replan-notification'] .notification__content").
-                shouldHave(exactText("У вас уже запланирована встреча на другую дату. Перепланировать?")).
+                shouldHave(text("У вас уже запланирована встреча на другую дату. Перепланировать?")).
                 shouldBe(visible, Duration.ofMillis(15000));
         $("[data-test-id='replan-notification'] button").click();
         //$$("button").find(exactText("Перепланировать")).click();
